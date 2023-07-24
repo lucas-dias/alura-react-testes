@@ -1,0 +1,68 @@
+footer.sorteio {
+  margin: 64px 0;
+}
+
+.containerSorteio .resultado {
+  color: #fe652bfc;
+  font-size: 25px;
+}
+
+.containerSorteio h2 {
+  color: var(--azul);
+}
+
+.containerSorteio {
+  text-align: center;
+}
+
+.botaoSortear {
+  width: 350px;
+  height: 80px;
+  font-size: 20px;
+  border-radius: 45px;
+  background-color: #fe652b;
+  color: #fff;
+  cursor: pointer;
+  margin: 16px 0;
+}
+
+.botaoSortear:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.botaoSortear:hover {
+  background-color: #4b69fd;
+}
+
+select {
+  border-radius: 45px;
+  height: 82px;
+  width: 70%;
+  box-sizing: border-box;
+  padding: 0 32px;
+  font-size: 20px;
+  border: 2px solid black;
+}
+
+select:focus {
+  outline: none;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 200;
+  margin: 32px 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  select {
+    width: 100%;
+  }
+
+  .botaoSortear {
+    width: 220px;
+    margin: 32px 0;
+  }
+}
