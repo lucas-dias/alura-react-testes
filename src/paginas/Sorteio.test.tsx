@@ -1,5 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import React from "react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { useListaParticipantes } from "../state/hooks/useListaParticipantes";
 import { RecoilRoot } from "recoil";
 import Sorteio from "./Sorteio";
@@ -55,5 +54,34 @@ describe('na página do sorteio', () => {
     fireEvent.click(botao)
     const amigoSecreto = screen.getByRole('alert')
     expect(amigoSecreto).toBeInTheDocument()
+  })
+
+  test('o amigo secreto deve ser exibido por apenas 5s', () => {
+    jest.useFakeTimers()
+    render(<RecoilRoot><Sorteio /></RecoilRoot>)
+
+    const select = screen.getByPlaceholderText('Selecione o seu nome')
+
+    fireEvent.change(select, {
+      target: {
+        value: participantes[0]
+      }
+    })
+    const botao = screen.getByRole('button')
+
+    fireEvent.click(botao)
+
+    let amigoSecreto = screen.queryByRole('alert')
+    expect(amigoSecreto).toBeInTheDocument()
+
+    //esperar n segundos
+    act(() => {
+      // necessário o uso do act pois a fç runAllTimers() re-renderiza o componente.
+      jest.setTimeout(5000)
+      jest.runAllTimers()
+    })
+
+    amigoSecreto = screen.queryByRole('alert')
+    expect(amigoSecreto).toBeNull()
   })
 })
